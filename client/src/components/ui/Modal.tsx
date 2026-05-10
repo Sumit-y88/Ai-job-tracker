@@ -39,12 +39,12 @@ export function Modal({
             </Dialog.Overlay>
             <Dialog.Content asChild>
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-48%" }}
+                animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
+                exit={{ opacity: 0, scale: 0.95, x: "-50%", y: "-48%" }}
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 className={cn(
-                  'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50',
+                  'fixed top-1/2 left-1/2 z-50',
                   'w-full max-w-lg',
                   'bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl',
                   'shadow-[var(--shadow-lg)] p-6',
