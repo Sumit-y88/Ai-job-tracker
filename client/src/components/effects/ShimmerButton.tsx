@@ -1,10 +1,10 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, HTMLMotionProps } from 'framer-motion'
 import { cn } from '../../lib/cn'
 import { Sparkles } from 'lucide-react'
 import { Spinner } from '../ui/Spinner'
 
-interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ShimmerButtonProps extends HTMLMotionProps<'button'> {
   isLoading?: boolean
   loadingText?: string
   icon?: boolean
