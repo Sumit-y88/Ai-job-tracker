@@ -130,19 +130,29 @@ export const getMe = asyncHandler(async (req, res) => {
 
 export const updateResume = asyncHandler(
   async (req, res) => {
-    const { resumeText } = req.body;
+    const { name, resumeText } = req.body;
+
+    const updateFields = {};
+    if (name !== undefined) updateFields.name = name;
+    if (resumeText !== undefined) updateFields.resumeText = resumeText;
 
     const user = await User.findByIdAndUpdate(
       req.userId,
-      {
-        resumeText,
-      },
+      updateFields,
       {
         new: true,
+        runValidators: true,
       }
     )
       .select("-passwordHash")
       .lean();
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
 
     return res.status(200).json({
       success: true,

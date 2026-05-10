@@ -79,44 +79,37 @@ export const generateLetter = asyncHandler(
 
 
 // Get Cover Letter By Job ID
-export const getCoverLetterByJob =
-    asyncHandler(async (req, res) => {
-        const job = await Job.findById(
-            req.params.jobId
-        ).lean();
+export const getCoverLetterByJob = asyncHandler(async (req, res) => {
+    const { jobId } = req.params;
 
-        if (!job) {
-            return res.status(404).json({
-                success: false,
-                message: "Job not found",
-            });
-        }
+    // First verify the job belongs to this user
+    const job = await Job.findOne({
+        _id: jobId,
+        userId: req.userId
+    }).lean();
 
-        // Ownership check
-        if (job.userId.toString() !== req.userId) {
-            return res.status(403).json({
-                success: false,
-                message: "Access denied",
-            });
-        }
-
-        const coverLetter =
-            await CoverLetter.findOne({
-                jobId: job._id,
-            }).lean();
-
-        if (!coverLetter) {
-            return res.status(404).json({
-                success: false,
-                message: "Cover letter not found",
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            data: coverLetter,
+    if (!job) {
+        return res.status(404).json({
+            success: false,
+            message: "Job not found",
         });
+    }
+
+    // Find the cover letter for this job
+    const coverLetter = await CoverLetter.findOne({ jobId }).lean();
+
+    if (!coverLetter) {
+        return res.status(404).json({
+            success: false,
+            message: "No cover letter found for this job",
+        });
+    }
+
+    return res.status(200).json({
+        success: true,
+        data: coverLetter,
     });
+});
 
 
 // Finalize Cover Letter

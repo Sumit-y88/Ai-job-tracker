@@ -47,7 +47,7 @@ router.get(
 );
 
 router.patch(
-  "/resume",
+  "/me",
   authMiddleware,
   updateResume
 );

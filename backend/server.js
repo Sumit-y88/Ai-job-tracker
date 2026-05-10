@@ -14,6 +14,7 @@ import passport from "passport";
 import "./config/passport.js";
 
 const app = express();
+app.set('trust proxy', 1)
 
 
 // Connect Database
