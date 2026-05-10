@@ -26,7 +26,11 @@ app.use(helmet());
 
 // CORS
 app.use(cors({
-  origin: process.env.CLIENT_URL ? [process.env.CLIENT_URL, "http://localhost:5173"] : "*",
+  origin: [
+    "https://ai-job-tracker-5zrn.vercel.app",
+    "http://localhost:5173",
+    process.env.CLIENT_URL,
+  ].filter(Boolean),
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
