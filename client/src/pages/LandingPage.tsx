@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Briefcase, Sparkles, Target, LayoutDashboard, BarChart2, 
-  FileText, SunMoon, ChevronDown, Github, Twitter, Linkedin
+  FileText, SunMoon, ChevronDown, Github, Linkedin, Globe
 } from 'lucide-react'
 import { cn } from '../lib/cn'
 import { ThemeToggle } from '../components/layout/ThemeToggle'
@@ -517,6 +517,24 @@ function FooterSection() {
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const socialLinks = [
+    {
+      label: 'GitHub',
+      href: 'https://github.com/Sumit-y88/Ai-job-tracker',
+      Icon: Github,
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/sumit-yadav-ab538b321/',
+      Icon: Linkedin,
+    },
+    {
+      label: 'Portfolio',
+      href: 'http://sumity88.in',
+      Icon: Globe,
+    },
+  ]
+
   return (
     <footer className="bg-[var(--bg-base)] border-t border-[var(--border)] py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between flex-wrap gap-12 md:gap-8">
@@ -529,9 +547,13 @@ function FooterSection() {
           </div>
           <p className="text-sm text-[var(--text-muted)] mt-3">Your AI-powered job search companion.</p>
           <div className="flex items-center gap-3 mt-6">
-            {[Github, Twitter, Linkedin].map((Icon, i) => (
+            {socialLinks.map(({ label, href, Icon }) => (
               <motion.a 
-                key={i} href="#" 
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
                 whileHover={{ scale: 1.05 }}
                 className="w-9 h-9 border border-[var(--border)] rounded-lg flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
               >
