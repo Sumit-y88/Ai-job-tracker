@@ -37,21 +37,21 @@ export function Modal({
                 className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
               />
             </Dialog.Overlay>
-            <Dialog.Content asChild>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-48%" }}
-                animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-                exit={{ opacity: 0, scale: 0.95, x: "-50%", y: "-48%" }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                className={cn(
-                  'fixed top-1/2 left-1/2 z-50',
-                  'w-full max-w-lg',
-                  'bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl',
-                  'shadow-[var(--shadow-lg)] p-6',
-                  'focus:outline-none',
-                  className
-                )}
-              >
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <Dialog.Content asChild>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  className={cn(
+                    'pointer-events-auto w-full max-w-lg max-h-[90vh] overflow-y-auto',
+                    'bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl',
+                    'shadow-[var(--shadow-lg)] p-6',
+                    'focus:outline-none',
+                    className
+                  )}
+                >
                 <div className="flex items-center justify-between mb-4">
                   {title && (
                     <Dialog.Title className="text-lg font-semibold text-[var(--text-primary)]">
@@ -83,6 +83,7 @@ export function Modal({
                 )}
               </motion.div>
             </Dialog.Content>
+            </div>
           </Dialog.Portal>
         )}
       </AnimatePresence>
