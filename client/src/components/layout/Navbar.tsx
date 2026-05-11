@@ -1,4 +1,5 @@
 import { Menu } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -8,6 +9,7 @@ interface NavbarProps {
 
 export function Navbar({ onMenuClick }: NavbarProps) {
   const user = useAuthStore((s) => s.user)
+  const navigate = useNavigate()
 
   const initials = user?.name
     ? user.name
@@ -32,13 +34,18 @@ export function Navbar({ onMenuClick }: NavbarProps) {
 
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        {user?.avatar ? (
-          <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover" />
-        ) : (
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold">
-            {initials}
-          </div>
-        )}
+        <div 
+          onClick={() => navigate('/profile')}
+          className="cursor-pointer hover:opacity-80 transition-opacity"
+        >
+          {user?.avatar ? (
+            <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover border border-transparent hover:border-[var(--accent)] transition-colors" />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold">
+              {initials}
+            </div>
+          )}
+        </div>
       </div>
     </header>
   )

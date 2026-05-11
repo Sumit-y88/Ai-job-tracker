@@ -100,27 +100,36 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         <ThemeToggle />
         <div className="border-t border-[var(--border)] pt-3">
           <div className="flex items-center gap-3 px-2">
-            {user?.avatar ? (
-              <img src={user.avatar} alt={user.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
-            ) : (
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
-                {initials}
+            <div 
+              onClick={() => {
+                navigate('/profile')
+                onClose?.()
+              }}
+              className="flex items-center gap-3 flex-1 min-w-0 cursor-pointer group"
+            >
+              {user?.avatar ? (
+                <img src={user.avatar} alt={user.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0 border border-transparent group-hover:border-[var(--accent)] transition-colors" />
+              ) : (
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold flex-shrink-0 group-hover:shadow-lg transition-all">
+                  {initials}
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-[var(--text-primary)] truncate group-hover:text-[var(--accent)] transition-colors">
+                  {user?.name}
+                </p>
+                <p className="text-xs text-[var(--text-muted)] truncate">{user?.email}</p>
               </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-[var(--text-primary)] truncate">
-                {user?.name}
-              </p>
-              <p className="text-xs text-[var(--text-muted)] truncate">{user?.email}</p>
             </div>
             <button
               onClick={handleLogout}
-              className="p-1.5 rounded-lg hover:bg-red-500/10 text-[var(--text-muted)] hover:text-red-500 transition-colors"
+              className="p-1.5 rounded-lg hover:bg-red-500/10 text-[var(--text-muted)] hover:text-red-500 transition-colors flex-shrink-0"
               title="Logout"
             >
               <LogOut className="w-4 h-4" />
             </button>
           </div>
+
         </div>
       </div>
     </div>

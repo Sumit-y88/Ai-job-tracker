@@ -123,7 +123,7 @@ function HeroSection() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mt-6 leading-relaxed"
         >
-          JobTrackr uses Claude AI to score your resume against job descriptions, generate personalized cover letters, and help you stay organized throughout your job search.
+          JobTrackr uses Gemini AI to score your resume against job descriptions, generate personalized cover letters, and help you stay organized throughout your job search.
         </motion.p>
 
         <motion.div
@@ -275,13 +275,13 @@ function FeaturesSection() {
   const features = [
     {
       title: "AI-powered match scoring",
-      desc: "Paste any job description and Claude instantly scores how well your resume matches — with specific strengths and gaps highlighted.",
+      desc: "Paste any job description and Gemini instantly scores how well your resume matches — with specific strengths and gaps highlighted.",
       icon: Target,
       bg: "bg-indigo-500/10 text-indigo-500",
     },
     {
       title: "Personalized cover letters",
-      desc: "Generate tailored cover letters in seconds. Choose your tone — formal, friendly, or assertive — and Claude writes it to fit both your background and the role.",
+      desc: "Generate tailored cover letters in seconds. Choose your tone — formal, friendly, or assertive — and Gemini writes it to fit both your background and the role.",
       icon: Sparkles,
       bg: "bg-purple-500/10 text-purple-500",
     },
@@ -359,11 +359,11 @@ function HowItWorksSection() {
     },
     {
       title: "Get your match score",
-      desc: "Claude instantly analyzes your resume against the job description and gives you a score from 0–100 with specific strengths and gaps.",
+      desc: "Gemini instantly analyzes your resume against the job description and gives you a score from 0–100 with specific strengths and gaps.",
     },
     {
       title: "Generate your cover letter",
-      desc: "Pick a tone and hit generate. Claude writes a personalized cover letter in seconds — no templates, no generic filler.",
+      desc: "Pick a tone and hit generate. Gemini writes a personalized cover letter in seconds — no templates, no generic filler.",
     },
     {
       title: "Track and land the offer",
@@ -421,7 +421,7 @@ function HowItWorksSection() {
           </div>
 
           <button className="w-full py-2 bg-[var(--accent)] text-white font-medium rounded-lg text-sm mb-4">
-            Generate with Claude AI
+            Generate with Gemini AI
           </button>
 
           <div className="space-y-2 relative">
@@ -442,9 +442,9 @@ function HowItWorksSection() {
 function FAQSection() {
   const faqs = [
     { q: "Is JobTrackr really free?", a: "Yes — JobTrackr is completely free to use. Create an account and start tracking your applications immediately. No credit card required." },
-    { q: "How does the AI match scoring work?", a: "When you add a job, JobTrackr sends your resume and the job description to Claude AI, which analyzes the overlap and returns a match score from 0 to 100 along with specific strengths and skill gaps. The whole process takes a few seconds." },
-    { q: "How are cover letters personalized?", a: "Claude reads your actual resume and the specific job description — not a generic template. It tailors every sentence to your background and the role requirements. You can also choose the tone: formal, friendly, or assertive." },
-    { q: "Is my resume data safe?", a: "Your resume text is stored securely in our database and is only ever sent to the Claude AI API for processing your requests. We never share, sell, or use your data for any other purpose." },
+    { q: "How does the AI match scoring work?", a: "When you add a job, JobTrackr sends your resume and the job description to Gemini AI, which analyzes the overlap and returns a match score from 0 to 100 along with specific strengths and skill gaps. The whole process takes a few seconds." },
+    { q: "How are cover letters personalized?", a: "Gemini reads your actual resume and the specific job description — not a generic template. It tailors every sentence to your background and the role requirements. You can also choose the tone: formal, friendly, or assertive." },
+    { q: "Is my resume data safe?", a: "Your resume text is stored securely in our database and is only ever sent to the Gemini AI API for processing your requests. We never share, sell, or use your data for any other purpose." },
     { q: "Can I use JobTrackr on mobile?", a: "Absolutely. JobTrackr is fully responsive and works beautifully on any device — phone, tablet, or desktop." },
     { q: "Do I need to create an account to try it?", a: "You can sign in with Google in one click — no form filling required. Alternatively, register with your email and password. Either way, you're up and running in under 30 seconds." }
   ]
