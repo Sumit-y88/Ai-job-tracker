@@ -1,12 +1,14 @@
 import express from "express";
 import passport from "passport";
 import jwt from "jsonwebtoken";
+import multer from "multer";
 
 import {
   register,
   login,
   getMe,
   updateResume,
+  uploadResume,
 } from "../controllers/authController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -50,6 +52,18 @@ router.patch(
   "/me",
   authMiddleware,
   updateResume
+);
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
+});
+
+router.post(
+  "/upload-resume",
+  authMiddleware,
+  upload.single("resume"),
+  uploadResume
 );
 
 // Google OAuth

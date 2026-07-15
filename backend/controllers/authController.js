@@ -1,5 +1,9 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const pdf = require("pdf-parse");
 
 import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
@@ -160,3 +164,33 @@ export const updateResume = asyncHandler(
     });
   }
 );
+
+// Upload & Parse PDF Resume
+export const uploadResume = asyncHandler(async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({
+      success: false,
+      message: "No file uploaded",
+    });
+  }
+
+  try {
+    const parser = new pdf.PDFParse({ data: req.file.buffer });
+    const result = await parser.getText();
+    const text = result.text || "";
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        text: text.trim(),
+      },
+    });
+  } catch (error) {
+    console.error("PDF Parsing Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to parse PDF file",
+      error: error.message,
+    });
+  }
+});
